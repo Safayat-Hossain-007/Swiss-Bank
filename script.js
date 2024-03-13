@@ -28,13 +28,15 @@ depositBtn.addEventListener('click',function(){
     const withdrawBtn = document.getElementById("addWithdraw");
     withdrawBtn.addEventListener("click",function(){
         const withdrawNumber = getInputNumber("withdrawAmount");
-        console.log(withdrawNumber);
+        updateSpanText("currentWithdraw",withdrawNumber);
+        updateSpanText("currentBalance",-1 *withdrawNumber);
+        document.getElementById("withdrawAmount").value ="";
     })
 
     function getInputNumber(id){
-        const withdrawAmount = document.getElementById(id).value;
-        const withdrawNumber = parseFloat(withdrawAmount);
-        return withdrawNumber;
+        const Amount = document.getElementById(id).value;
+        const amountNumber = parseFloat(Amount);
+        return amountNumber;
 
     }
 
