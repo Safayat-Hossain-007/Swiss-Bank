@@ -11,22 +11,40 @@ loginBtn.addEventListener('click', function () {
     //deposit button event handler
 const depositBtn = document.getElementById('addDeposit');
 depositBtn.addEventListener('click',function(){
-   const depositAmount = document.getElementById('depositAmount').value;
-   const depositNumber = parseFloat(depositAmount);
+   const depositNumber = getInputNumber("depositAmount");
 
-   const currentDeposit = document.getElementById('currentDeposit').innerText;
-   const currentDepositNumber = parseFloat(currentDeposit);
-   const totalDeposit = depositNumber+currentDepositNumber;
-   console.log(totalDeposit);
-   document.getElementById("currentDeposit").innerText =totalDeposit;
+//    const currentDeposit = document.getElementById('currentDeposit').innerText;
+//    const currentDepositNumber = parseFloat(currentDeposit);
+//    const totalDeposit = depositNumber+currentDepositNumber;
+//    document.getElementById("currentDeposit").innerText = totalDeposit;
+   updateSpanText("currentDeposit",depositNumber)
    document.getElementById("depositAmount").value ="";
+   updateSpanText("currentBalance",depositNumber);
+ 
 
     
 })
+    //Withdraw buttonEvent handler
+    const withdrawBtn = document.getElementById("addWithdraw");
+    withdrawBtn.addEventListener("click",function(){
+        const withdrawNumber = getInputNumber("withdrawAmount");
+        console.log(withdrawNumber);
+    })
+
+    function getInputNumber(id){
+        const withdrawAmount = document.getElementById(id).value;
+        const withdrawNumber = parseFloat(withdrawAmount);
+        return withdrawNumber;
+
+    }
 
 
-    //withdraw button event handler
-const withdrawBtn = document.getElementById('withdraw');
-withdrawBtn.addEventListener('click',function(){
-    console.log("click");
-})
+
+function updateSpanText(id,depositNumber){
+    const current = document.getElementById(id).innerText;
+    const currentNumber = parseFloat(current);
+    const totalAmount = depositNumber + currentNumber;
+    document.getElementById(id).innerText = totalAmount;
+}
+
+
